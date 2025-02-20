@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F1706170-D217-4C70-80F2-C5CF4DE3455D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{A26AD1BA-7D8B-4D8F-9BC3-DC8762AF27B1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.API", "src\CashFlow.API\CashFlow.API.csproj", "{525FCECF-7AA5-42E2-A73C-23811B97E6A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Domain", "src\CashFlow.Domain\CashFlow.Domain.csproj", "{5976223E-2141-478F-8DDA-874879424AC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Application", "src\CashFlow.Application\CashFlow.Application.csproj", "{D314FF65-1E6B-45A9-A5A1-A5DB43B9FD9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Communication", "src\CashFlow.Communication\CashFlow.Communication.csproj", "{844E47DA-F629-4E10-BC07-EFB978964EC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Exception", "src\CashFlow.Exception\CashFlow.Exception.csproj", "{825F06F2-D7BF-4537-BAF1-727732D638E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Infrastructure", "src\CashFlow.Infrastructure\CashFlow.Infrastructure.csproj", "{EA6A9510-FDA8-478C-B222-4B070802A204}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{525FCECF-7AA5-42E2-A73C-23811B97E6A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{525FCECF-7AA5-42E2-A73C-23811B97E6A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{525FCECF-7AA5-42E2-A73C-23811B97E6A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{525FCECF-7AA5-42E2-A73C-23811B97E6A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5976223E-2141-478F-8DDA-874879424AC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5976223E-2141-478F-8DDA-874879424AC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5976223E-2141-478F-8DDA-874879424AC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5976223E-2141-478F-8DDA-874879424AC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D314FF65-1E6B-45A9-A5A1-A5DB43B9FD9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D314FF65-1E6B-45A9-A5A1-A5DB43B9FD9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D314FF65-1E6B-45A9-A5A1-A5DB43B9FD9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D314FF65-1E6B-45A9-A5A1-A5DB43B9FD9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{844E47DA-F629-4E10-BC07-EFB978964EC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{844E47DA-F629-4E10-BC07-EFB978964EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{844E47DA-F629-4E10-BC07-EFB978964EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{844E47DA-F629-4E10-BC07-EFB978964EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{825F06F2-D7BF-4537-BAF1-727732D638E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{825F06F2-D7BF-4537-BAF1-727732D638E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{825F06F2-D7BF-4537-BAF1-727732D638E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{825F06F2-D7BF-4537-BAF1-727732D638E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA6A9510-FDA8-478C-B222-4B070802A204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA6A9510-FDA8-478C-B222-4B070802A204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA6A9510-FDA8-478C-B222-4B070802A204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA6A9510-FDA8-478C-B222-4B070802A204}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{525FCECF-7AA5-42E2-A73C-23811B97E6A1} = {F1706170-D217-4C70-80F2-C5CF4DE3455D}
+		{5976223E-2141-478F-8DDA-874879424AC9} = {F1706170-D217-4C70-80F2-C5CF4DE3455D}
+		{D314FF65-1E6B-45A9-A5A1-A5DB43B9FD9C} = {F1706170-D217-4C70-80F2-C5CF4DE3455D}
+		{844E47DA-F629-4E10-BC07-EFB978964EC8} = {F1706170-D217-4C70-80F2-C5CF4DE3455D}
+		{825F06F2-D7BF-4537-BAF1-727732D638E4} = {F1706170-D217-4C70-80F2-C5CF4DE3455D}
+		{EA6A9510-FDA8-478C-B222-4B070802A204} = {F1706170-D217-4C70-80F2-C5CF4DE3455D}
+	EndGlobalSection
+EndGlobal
