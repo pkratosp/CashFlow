@@ -1,6 +1,7 @@
 ﻿using CashFlow.Application.useCases.Expenses.Register;
 using CashFlow.Communication.requests;
 using CashFlow.Communication.responses;
+using CashFlow.Exception.ExceptionBase;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,13 +25,13 @@ namespace CashFlow.API.Controllers
 
                 return Created(string.Empty, response);
             }
-            catch (ArgumentException error) 
+            catch (ErrorValidationException error) 
             {
-                var errroMessage = new ResponseErrorJson(error.Message);
+                var errroMessage = new ResponseErrorJson(error.Errors);
 
                 return BadRequest(errroMessage);
             }
-            catch (Exception error)
+            catch
             {
                 var erroMessage = new ResponseErrorJson("unknow error");
 
