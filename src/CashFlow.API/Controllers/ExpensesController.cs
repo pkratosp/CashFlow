@@ -16,27 +16,13 @@ namespace CashFlow.API.Controllers
         [HttpPost]
         public IActionResult Register([FromBody] RequestRegisterExpenseJson body)
         {
-            try
-            {
-                var useCase = new RegisterExpensesUseCase();
 
-                var response = useCase.Execute(body: body);
+            var useCase = new RegisterExpensesUseCase();
+
+            var response = useCase.Execute(body: body);
 
 
-                return Created(string.Empty, response);
-            }
-            catch (ErrorValidationException error) 
-            {
-                var errroMessage = new ResponseErrorJson(error.Errors);
-
-                return BadRequest(errroMessage);
-            }
-            catch
-            {
-                var erroMessage = new ResponseErrorJson("unknow error");
-
-                return StatusCode(StatusCodes.Status500InternalServerError, erroMessage);
-            }
+            return Created(string.Empty, response);
         }
 
     }
