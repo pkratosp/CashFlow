@@ -11,12 +11,12 @@ namespace CashFlow.API.Controllers
     {
 
         [HttpPost]
-        public IActionResult Register(
+        public async Task<IActionResult> Register(
             [FromServices] IRegisterExpensesUseCase useCase,
             [FromBody] RequestRegisterExpenseJson body
         )
         {
-            var response = useCase.Execute(body: body);
+            var response = await useCase.Execute(body: body);
 
 
             return Created(string.Empty, response);
