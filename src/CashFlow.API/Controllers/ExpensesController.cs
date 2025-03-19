@@ -1,8 +1,5 @@
 ﻿using CashFlow.Application.useCases.Expenses.Register;
 using CashFlow.Communication.requests;
-using CashFlow.Communication.responses;
-using CashFlow.Exception.ExceptionBase;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CashFlow.API.Controllers
@@ -14,11 +11,11 @@ namespace CashFlow.API.Controllers
     {
 
         [HttpPost]
-        public IActionResult Register([FromBody] RequestRegisterExpenseJson body)
+        public IActionResult Register(
+            [FromServices] IRegisterExpensesUseCase useCase,
+            [FromBody] RequestRegisterExpenseJson body
+        )
         {
-
-            var useCase = new RegisterExpensesUseCase();
-
             var response = useCase.Execute(body: body);
 
 
