@@ -15,29 +15,17 @@ public class ExceptionFilter : IExceptionFilter
             HandleProjectException(context);
         }else
         {
-            Console.WriteLine(context.ToString());
             ThrowUnknowError(context);
         }
     }
 
     private void HandleProjectException (ExceptionContext context) 
     {
-        if (context.Exception is ErrorValidationException errorValidationException)
-        {
-            var errorMessage = new ResponseErrorJson(errorValidationException.Errors);
+        var cashFlowExcepetion = (CashFlowException)context.Exception;
+        var errorMessage = new ResponseErrorJson(cashFlowExcepetion.GetErrors());
 
-            context.HttpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
-            context.Result = new BadRequestObjectResult(errorMessage);
-        } else if (context.Exception is NotFoundExpection notFoundExpection) 
-        { 
-            var errorMessage = new ResponseErrorJson(notFoundExpection.Message);
-
-            context.HttpContext.Response.StatusCode = StatusCodes.Status404NotFound;
-            context.Result = new NotFoundObjectResult(errorMessage);
-        } else
-        {
-            ThrowUnknowError(context);
-        }
+        context.HttpContext.Response.StatusCode = cashFlowExcepetion.StatusCode;
+        context.Result = new ObjectResult(errorMessage);
     }
 
     private void ThrowUnknowError(ExceptionContext context) 
