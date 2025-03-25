@@ -123,6 +123,9 @@
   <data name="DATE_INVALID" xml:space="preserve">
     <value>Date invalid</value>
   </data>
+  <data name="NOT_FOUND" xml:space="preserve">
+    <value>dépense non trouvée</value>
+  </data>
   <data name="PAYMENTTYPE_INVALID" xml:space="preserve">
     <value>Le type de paiement n'est pas valide</value>
   </data>
@@ -130,6 +133,6 @@
     <value>Le titre est obligatoire</value>
   </data>
   <data name="UNKNOW_ERROR" xml:space="preserve">
-    <value>unknow error</value>
+    <value>erreur inconnue</value>
   </data>
 </root>

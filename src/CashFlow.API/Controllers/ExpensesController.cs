@@ -57,12 +57,7 @@ namespace CashFlow.API.Controllers
 
             var response = await useCase.Execute(id);
 
-            if (response != null)
-            {
-                return Ok(response);
-            }
-
-            return NotFound();
+            return Ok(response);
         }
     }
 }
