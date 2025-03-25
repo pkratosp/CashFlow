@@ -1,4 +1,5 @@
 ﻿using CashFlow.Application.useCases.Expenses.GetAll;
+using CashFlow.Application.useCases.Expenses.GetById;
 using CashFlow.Application.useCases.Expenses.Register;
 using CashFlow.Communication.requests;
 using CashFlow.Communication.responses;
@@ -41,6 +42,27 @@ namespace CashFlow.API.Controllers
 
 
             return NoContent();
+        }
+
+
+        [HttpGet]
+        [Route("{id}")]
+        [ProducesResponseType(typeof(ResponseExpenseJson), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GetById(
+            [FromServices] IGetByIdExpenseUseCase useCase,
+            [FromRoute] long id
+        )
+        {
+
+            var response = await useCase.Execute(id);
+
+            if (response != null)
+            {
+                return Ok(response);
+            }
+
+            return NotFound();
         }
     }
 }

@@ -15,6 +15,7 @@ public class ExceptionFilter : IExceptionFilter
             HandleProjectException(context);
         }else
         {
+            Console.WriteLine(context.ToString());
             ThrowUnknowError(context);
         }
     }
