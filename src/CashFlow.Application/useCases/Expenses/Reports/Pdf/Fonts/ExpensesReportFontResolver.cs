@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using PdfSharp.Fonts;
+﻿using PdfSharp.Fonts;
+using System.Reflection;
 
 namespace CashFlow.Application.useCases.Expenses.Reports.Pdf.Fonts;
 
@@ -9,13 +9,9 @@ public class ExpensesReportFontResolver : IFontResolver
     {
         var stream = ReadFontFile(faceName);
 
-        if(stream is null)
-        {
-            stream = ReadFontFile(FontHelper.DEFAULT_FONT);
-        }
+        stream ??= ReadFontFile(FontHelper.DEFAULT_FONT);
 
-
-        var length = (int)stream.Length;
+        var length = (int)stream!.Length;
 
         var data = new byte[length];
 
@@ -29,10 +25,10 @@ public class ExpensesReportFontResolver : IFontResolver
         return new FontResolverInfo(familyName);
     }
 
-    private Stream? ReadFontFile(string faceName) 
+    private Stream? ReadFontFile(string faceName)
     {
-        var assemby = Assembly.GetExecutingAssembly();
+        var assembly = Assembly.GetExecutingAssembly();
 
-        return assemby.GetManifestResourceStream($"CashFlow.Application.UseCases.Reports.Pdf.Fonts.{faceName}.ttf");
+        return assembly.GetManifestResourceStream($"CashFlow.Application.useCases.Expenses.Reports.Pdf.Fonts.{faceName}.ttf");
     }
 }
