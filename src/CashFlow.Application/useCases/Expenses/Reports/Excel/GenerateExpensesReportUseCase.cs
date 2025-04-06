@@ -1,4 +1,4 @@
-﻿using CashFlow.Domain.enums;
+﻿using CashFlow.Domain.Extensions;
 using CashFlow.Domain.Reports;
 using CashFlow.Domain.Repositories.Expenses;
 using ClosedXML.Excel;
@@ -39,7 +39,7 @@ public class GenerateExpensesReportUseCase : IGenerateExpensesReportUseCase
         {
             worksheet.Cell($"A{rows}").Value = expense.Title;
             worksheet.Cell($"B{rows}").Value = expense.Date;
-            worksheet.Cell($"C{rows}").Value = FormatePayment(expense.PaymentType);
+            worksheet.Cell($"C{rows}").Value = expense.PaymentType.PaymentTypeToString();
             
             worksheet.Cell($"D{rows}").Value = expense.Amount;
 
@@ -57,19 +57,6 @@ public class GenerateExpensesReportUseCase : IGenerateExpensesReportUseCase
         workbook.SaveAs(file);
 
         return file.ToArray();
-    }
-
-    private string FormatePayment(PaymentType payment)
-    {
-        return payment switch 
-        {
-            PaymentType.Cach => "Dinheiro",
-            PaymentType.CreditCard => "Cartão de crédito",
-            PaymentType.DebitCard => "Cartão de débito",
-            PaymentType.EletronicTransfer => "Transaferencia eletrónica",
-            _ => string.Empty
-        
-        };
     }
 
     private void InsertHeader(IXLWorksheet worksheet)
