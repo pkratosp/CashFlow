@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CashFlow.Communication.requests;
 using CashFlow.Communication.responses;
+using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Repositories.User;
 using CashFlow.Domain.Security.Cryptography;
 using CashFlow.Exception;
@@ -15,22 +16,33 @@ public class RegisterUserUseCase : IRegisterUserUseCase
     private readonly IMapper _mapper;
     private readonly IPasswordEncripter _passwordEncripter;
     private readonly IUserReadOnlyRepository _userRepository;
+    private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
+    private readonly IUnitOfWork _unitOfWork;
 
     public RegisterUserUseCase(
         IMapper mapper,
         IPasswordEncripter passwordEncripter,
-        IUserReadOnlyRepository userRepository)
+        IUserReadOnlyRepository userRepository,
+        IUserWriteOnlyRepository userWriteOnlyRepository,
+        IUnitOfWork unitOfWork)
     {
         _mapper = mapper;
         _passwordEncripter = passwordEncripter;
         _userRepository = userRepository;
+        _userWriteOnlyRepository = userWriteOnlyRepository;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ResponseRegisterUserJson> Execute(RequestRegisterUserJson body)
     {
-        Validate(body);
+        await Validate(body);
         var user = _mapper.Map<Domain.Entities.User>(body);
         user.Password = _passwordEncripter.Encript(body.Password);
+        user.UserIdentify = Guid.NewGuid();
+
+        await _userWriteOnlyRepository.Add(user);
+
+        await _unitOfWork.Commit();
 
         return new ResponseRegisterUserJson
         {
@@ -50,7 +62,7 @@ public class RegisterUserUseCase : IRegisterUserUseCase
             result.Errors.Add(new ValidationFailure(string.Empty, ResourceErrorMessages.EMAIL_ALREADY_REGISTERED));
         }
 
-        if (result.IsValid == false)
+        if (result.IsValid == true)
         {
             var errorMessages = result.Errors.Select(f => f.ErrorMessage).ToList();
 
