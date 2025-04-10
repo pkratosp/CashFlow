@@ -123,6 +123,18 @@
   <data name="DATE_INVALID" xml:space="preserve">
     <value>Date invalid</value>
   </data>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>L'email ne peut pas être vide.</value>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>L'email n'est pas valide.</value>
+  </data>
+  <data name="INVALID_PASSWORD" xml:space="preserve">
+    <value>Votre mot de passe doit comporter au moins 8 caractères et inclure au moins une lettre majuscule, une lettre minuscule et un chiffre.</value>
+  </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>Le nom ne peut pas être vide.</value>
+  </data>
   <data name="NOT_FOUND" xml:space="preserve">
     <value>dépense non trouvée</value>
   </data>
