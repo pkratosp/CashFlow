@@ -12,4 +12,10 @@ public class Bycript : IPasswordEncripter
         return passwordHash;
     }
 
+    public bool Verify(string password, string hashPassword)
+    {
+        var verify = BC.Verify(password, hashPassword);
+
+        return verify;
+    }
 }
