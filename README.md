@@ -3,12 +3,12 @@
 Este projeto foi desenvolvido com .NET 8, usando os principios de domain driven desing(DDD), para o gerenciamento de despesas pessoais.
 
 ## Tecnologias usadas
-![badge-dot-net]
-![badge-windows]
-![badge-visual-studio]
-![badge-mysql]
-![badge-docker]
-![badge-swagger]
+- .NET 8
+- mysql
+- docker
+- windows
+- swagger
+- visual studio
 
 ## Requisitos para instalar o projeto
 
