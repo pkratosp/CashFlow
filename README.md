@@ -19,7 +19,7 @@ Este projeto foi desenvolvido com .NET 8, usando os principios de domain driven 
 ## Instalação
 
 - Clone o projeto
-sh
+
 ```
 https://github.com/pkratosp/CashFlow.git
 ```
