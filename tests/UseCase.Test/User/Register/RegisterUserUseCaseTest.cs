@@ -62,7 +62,7 @@ public class RegisterUserUseCaseTest
         var userWriteOnlyRepository = UserWriteOnlyRepositoryBuilder.Build();
         var accessTokenGenerator = AccessTokenGeneratorBuilder.Build();
         var userReadOnlyRepository = new UserReadOnlyRepositoryBuilder();
-        var passwordEncripter = PasswordEncripterBuilder.Build();
+        var passwordEncripter = new PasswordEncripterBuilder().Build();
 
         if (string.IsNullOrWhiteSpace(email) == false)
         {
