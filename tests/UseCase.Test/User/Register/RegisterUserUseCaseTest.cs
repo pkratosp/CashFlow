@@ -42,19 +42,37 @@ public class RegisterUserUseCaseTest
         result.Where(ex => ex.GetErrors().Count() == 1 && ex.GetErrors().Contains(ResourceErrorMessages.NAME_EMPTY));
     }
 
-    private RegisterUserUseCase CreateUseCase ()
+    [Fact]
+    public async Task Email_Alert_Exist()
+    {
+        var request = RequestRegisterUserJsonBuilder.Build();
+        var useCase = CreateUseCase(request.Email);
+
+        var act = async () => await useCase.Execute(request);
+
+        var result = await act.Should().ThrowAsync<ErrorValidationException>();
+
+        result.Where(ex => ex.GetErrors().Count() == 1 && ex.GetErrors().Contains(ResourceErrorMessages.EMAIL_ALREADY_REGISTERED));
+    }
+
+    private RegisterUserUseCase CreateUseCase (string? email = null)
     {
         var mapper = MapperBuilder.Build();
         var unitOfWork = UnitOfWorkBuilder.Build();
         var userWriteOnlyRepository = UserWriteOnlyRepositoryBuilder.Build();
         var accessTokenGenerator = AccessTokenGeneratorBuilder.Build();
-        var userReadOnlyRepository = new UserReadOnlyRepositoryBuilder().Build();
+        var userReadOnlyRepository = new UserReadOnlyRepositoryBuilder();
         var passwordEncripter = PasswordEncripterBuilder.Build();
+
+        if (string.IsNullOrWhiteSpace(email) == false)
+        {
+            userReadOnlyRepository.ExistActiveUserWithEmail(email);
+        }
 
         return new RegisterUserUseCase(
             mapper,
             passwordEncripter,
-            userReadOnlyRepository,
+            userReadOnlyRepository.Build(),
             userWriteOnlyRepository,
             unitOfWork,
             accessTokenGenerator
