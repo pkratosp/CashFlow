@@ -4,6 +4,8 @@ using CashFlow.Exception;
 using CommonTestUtilities.Requests;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
+using System.Net.Http.Headers;
+using System.Globalization;
 
 namespace WebApi.Test.Users.Register;
 
@@ -41,6 +43,8 @@ public class RegisterUserTest: IClassFixture<CustomWebApplicationFactory>
         var request = RequestRegisterUserJsonBuilder.Build();
         request.Name = string.Empty;
 
+        _httpClient.DefaultRequestHeaders.AcceptLanguage.Add(new StringWithQualityHeaderValue("fr"));
+
         var result = await _httpClient.PostAsJsonAsync(METHOD, request);
 
         result.StatusCode.Should().Be(System.Net.HttpStatusCode.BadRequest);
@@ -51,6 +55,8 @@ public class RegisterUserTest: IClassFixture<CustomWebApplicationFactory>
 
         var errors = response.RootElement.GetProperty("errorMessage").EnumerateArray();
 
-        errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(ResourceErrorMessages.NAME_EMPTY));
+        var expenctedMessage = ResourceErrorMessages.ResourceManager.GetString("NAME_EMPTY", new CultureInfo("fr"));
+
+        errors.Should().HaveCount(1).And.Contain(error => error.GetString()!.Equals(expenctedMessage));
     }
 }
