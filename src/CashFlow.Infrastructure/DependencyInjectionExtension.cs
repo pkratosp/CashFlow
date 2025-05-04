@@ -21,6 +21,9 @@ public static class DependencyInjectionExtension
 
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration cofiguration)
     {
+        services.AddScoped<IPasswordEncripter, Bycript>();
+        services.AddScoped<ILoggedUser, LoggedUser>();
+
         AddRepositories(services);
         AddToken(services, cofiguration);
 
@@ -28,9 +31,6 @@ public static class DependencyInjectionExtension
         {
             AddContext(services, cofiguration);
         }
-
-        services.AddScoped<IPasswordEncripter, Bycript>();
-        services.AddScoped<ILoggedUser, LoggedUser>();
     }
 
     private static void AddToken (IServiceCollection services, IConfiguration configuration)
