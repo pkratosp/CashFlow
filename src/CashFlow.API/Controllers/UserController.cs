@@ -21,7 +21,7 @@ public class UserController : ControllerBase
         var result = await usecase.Execute(body);
 
 
-        return Ok(result);
+        return Created(string.Empty, result);
     }
 
 }

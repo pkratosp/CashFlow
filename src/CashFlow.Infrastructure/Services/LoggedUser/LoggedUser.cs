@@ -28,9 +28,9 @@ public class LoggedUser : ILoggedUser
 
         var securityToken = tokenHandler.ReadJwtToken(token);
 
-        var identify = securityToken.Claims.First(claim => claim.Type == ClaimTypes.Sid).Value;
+        var identify = securityToken.Claims.First(claim => claim.Type == "sub").Value;
 
-        var findUser = await _dbContext
+            var findUser = await _dbContext
             .Users
             .AsNoTracking()
             .FirstAsync(user => user.UserIdentify == Guid.Parse(identify));
